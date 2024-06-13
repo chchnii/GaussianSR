@@ -1,0 +1,6 @@
+# Swap file.
+.*.sw*
+
+# Jekyll generated
+/_site/
+/Gemfile.lock

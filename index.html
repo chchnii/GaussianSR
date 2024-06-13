@@ -1,0 +1,603 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VPKZS1H0X8"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-VPKZS1H0X8');
+  </script>
+  
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+
+  <!-- bulma css template -->
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./css/twentytwenty.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./js/fontawesome.all.min.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-carousel.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/index.js"></script>
+
+  <!-- ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <!-- model viewer -->
+  <!-- <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script> -->
+
+  <!-- LaTeX viewer -->
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- icon -->
+  <!-- <link rel="icon" href="./images/favicon.ico"> -->
+  <!-- <link rel="shortcut icon" type="image/jpg" href="" /> -->
+  <title>
+    GaussianSR
+  </title>
+  <style>
+    table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    th, td {
+        /* border: 1px solid black; */
+        /* border: none; */
+        text-align: center;
+        padding: 5px;
+    }
+    th {
+            font-weight: bold;
+            border-bottom: 1.2px solid rgb(0, 0, 0);
+        }
+    th:nth-child(1), td:nth-child(1),
+    td:nth-child(5), th:nth-child(5),
+    td:nth-child(9), th:nth-child(9) {
+        border-right: 1.2px solid rgb(0, 0, 0);
+        }
+    td[colspan="1"] {
+        border-right: none !important;
+    }
+
+    #specific-video {
+            width: 100%; /* Adjust the width as needed */
+            height: 90vh; /* Adjust the height as needed */
+            object-fit: cover; /* Change this as needed */
+        }
+    #specific-video-blender {
+        width: 100%; /* Adjust the width as needed */
+        height: 60vh; /* Adjust the height as needed */
+        object-fit: cover; /* Change this as needed */
+    }
+    #specific-video-blender-lr {
+        width: 100%; 
+        height: 60vh;
+        object-fit: cover; 
+    }
+
+    #specific-video-lr {
+        width: 100%; 
+        height: 90vh;
+        object-fit: cover; 
+    }
+  </style>
+</head>
+<body>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+
+    <!-- paper title -->
+    <p class="title is-2 publication-title">
+    <!-- <font color="#8A2BE2">LucidDreamer</font> -->
+    <font>GaussianSR</font>: 3D Gaussian Super-Resolution with 2D Diffusion Priors
+    </p>
+
+    <!-- publication -->
+    <!-- <p class="subtitle is-4"> Arxiv 2023 </p> -->
+
+    <!-- authors -->
+    <p class="title is-4 publication-authors"> 
+      <span class="author-block">Xiqian Yu*</a><sup>1</sup>,</span>
+      <span class="author-block">Hanxin Zhu*</a><sup>1</sup>,</span>
+      <span class="author-block">Tianyu He</a><sup>2</sup>,</span>
+      <span class="author-block">Zhibo Chen</a><sup>1</sup></span>
+    </p>
+
+    <!-- affiliations -->
+    <p class="subtitle is-5 publication-authors"> 
+      <sup>*</sup> Denotes equal contribution </br>
+    </p>
+    <p class="subtitle is-5 publication-authors"> 
+      <span class="author-block"><sup>1</sup> University of Science and Technology of China</span>,
+      <span class="author-block"><sup>2</sup> Microsoft Research Asia</span>
+    </p>
+    <!-- <div class="is-size-5 publication-authors"> -->
+    <!-- </div> -->
+
+
+    <!-- other links -->
+    <div class="is-flex is-justify-content-center">
+
+      <!-- PDF Link. -->
+      <!-- <span class="icon-text mx-1">
+        <a href=""
+           class="external-link button is-normal is-rounded is-dark">
+          <span class="icon">
+              <i class="fas fa-file-pdf"></i>
+          </span>
+          <span>Paper</span>
+        </a>
+      </span> -->
+      <span class="icon-text mx-1">
+        <a href=""
+           class="external-link button is-normal is-rounded is-dark">
+          <span class="icon">
+              <i class="ai ai-arxiv"></i>
+          </span>
+          <span>arXiv</span>
+        </a>
+      </span>
+      <span class="icon-text mx-1">
+        <a href=""
+           class="external-link button is-normal is-rounded is-dark" disabled>
+          <span class="icon">
+              <ion-icon name="logo-github"></ion-icon>
+          </span>
+          <span> Code </span>
+        </a>
+      </span>
+    </div>
+   
+  </div>
+</section>
+
+<section class="section">
+  <!-- <div class="container is-max-desktop has-text-centered"> -->
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+
+      <div id="results-carousel1" class="carousel results-carousel">
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-blender-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/hotdog_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video-blender" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/hotdog_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-blender-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/chair_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video-blender" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/chair_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-blender-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/lego_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video-blender" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/lego_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-blender-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/mic_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video-blender" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/mic_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-blender-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/ficus_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video-blender" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/ficus_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-blender-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/drums_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video-blender" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/drums_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <!-- <div id="results-carousel2" class="carousel results-carousel">
+
+        
+
+      </div> -->
+      <div id="results-carousel3" class="carousel results-carousel_">
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/playroom_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/playroom_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/garden_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/garden_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+  
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/room_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/room_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/bonsai_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/bonsai_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="1.0">
+            <div class="video">
+              <video poster="" id="specific-video-lr" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/bicycle_lr.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video">
+              <video poster="" id="specific-video" autoplay controls muted loop playsinline height="100%">
+                <source src="./video/bicycle_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+  
+       
+      </div>
+      
+
+    </div>
+  </div>
+</section>
+<script>
+    bulmaCarousel.attach('#results-carousel1', {
+        slidesToScroll: 1,
+        slidesToShow: 3
+    });
+    bulmaCarousel.attach('#results-carousel2', {
+        slidesToScroll: 1,
+        slidesToShow: 3
+    });
+    bulmaCarousel.attach('#results-carousel3', {
+        slidesToScroll: 1,
+        slidesToShow: 2
+    });
+    $(function(){
+        $(".twentytwenty-container").twentytwenty({
+            before_label: 'Low-res', // Set a custom before label
+            after_label: 'GaussianSR', // Set a custom after label
+            default_offset_pct: 0.5,
+            click_to_move: false
+        });
+    });
+    
+</script>
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body"> -->
+    <!-- <iframe id="demo-animelake" src='https://my.spline.design/untitled-c450ec593848b5ebf5731ad59fc9636d/' frameborder='0' width="49.5%" height="576"></iframe> <iframe id="demo-animelake" src='https://my.spline.design/untitled-79a5f969bd57796761dd84fe987d99ef/' frameborder='0' width="49.5%" height="576"></iframe> -->
+    <!-- <iframe id="demo-animelake" src='https://my.spline.design/untitled-c450ec593848b5ebf5731ad59fc9636d/' frameborder='0' width="100%" height="576"></iframe>
+    <p class="content has-text-centered is-size-5">
+      Our method can generate navigatable 3D scenes out of a single text prompt of a single image.</br>
+      <b>Click and drag</b> (navigate) / <b>shift and scroll</b> (zoom) <b>to feel the 3D.</b>
+    </p>
+  </div>
+</section> -->
+<!--  -->
+<!--  -->
+<!-- [> main container <] -->
+<!-- <section class="section"> -->
+  <div class="container is-max-desktop has-text-centered">
+
+    <!-- abstract -->
+    <p class="title is-3 mt-5 has-text-centered"> Abstract </p>
+    <p class="content is-size-6 has-text-justified">
+      Achieving high-resolution novel view synthesis (HRNVS) from low-resolution 
+      input views is a challenging task due to the lack of high-resolution data. 
+      Previous methods optimize high-resolution Neural Radiance Field (NeRF) from 
+      low-resolution input views but suffer from slow rendering speed. In this work, 
+      we base our method on 3D Gaussian Splatting (3DGS) due to its capability of producing 
+      high-quality images at a faster rendering speed. To alleviate the shortage of data 
+      for higher-resolution synthesis, we propose to leverage off-the-shelf 2D diffusion 
+      priors by distilling the 2D knowledge into 3D with Score Distillation Sampling (SDS). 
+      Nevertheless, applying SDS directly to Gaussian-based 3D super-resolution leads to 
+      undesirable and redundant 3D Gaussian primitives, due to the randomness brought by generative priors.
+      To mitigate this issue, we introduce two simple yet effective techniques to 
+      reduce stochastic disturbances introduced by SDS. Specifically, 
+      we 1) shrink the range of diffusion timestep in SDS with an annealing strategy; 
+      2) randomly discard redundant Gaussian primitives during densification.
+      Extensive experiments have demonstrated that our proposed GaussainSR can 
+      attain high-quality results for HRNVS with only low-resolution inputs on both 
+      synthetic and real-world datasets.
+    </p>
+
+    <!-- main figure -->
+    <p class="title is-3 mt-5 has-text-centered"> Method </p>
+    <img src="images/framework.png", alt="Algorithm description of GaussainSR", width="100%", height="100%"> </img>
+    <p class="content has-text-centered is-size-5">
+    GaussianSR 1) synthesizes high-resolution novel views by <b>distilling 
+    2D diffusion priors</b> into 3D representation with SDS 
+    to alleviate the lack of high-resolution data; 2) proposes <b>Gaussian Dropout and Diffusion 
+    Timestep Annealing</b> to reduce stochastic disturbance introduced by SDS.
+    </p>
+
+    <p class="title is-3 mt-5 has-text-centered"> Qualitative Comparison </p>
+    <img src="images/main_result_mip360.png", alt="Perceptual quality comparison", width="100%", height="100%"> </img>
+    <p class="content has-text-centered is-size-5">
+      GaussainSR can produce superior visual results characterized by clearer edges and sharper details
+      compared to other SOTA methods.
+      </p>
+
+
+    <p class="title is-3 mt-5 has-text-centered"> Quantitative Comparison </p>
+    <p class="content is-size-6 has-text-justified">
+      <!-- The quality of view synthesis is assessed relative to the ground truth from the same pose, employing four metrics:
+      Peak Signal-to-Noise Ratio (PSNR) and Structural Similarity Index Measure (SSIM), LPIPS (VGG) and Frames Per Second (FPS). -->
+      We compare our method against several prior approaches on both synthetic and real-world datasets.
+      GaussainSR outperforms previous state-of-the-art methods significantly in terms of PSNR,
+      SSIM, and LPIPS metrics, while also requiring less rendering time.
+    </p>
+
+    <table>
+      <thead>
+          <tr>
+              <!-- <th rowspan="2">Method</th>
+              <th colspan="4">Blender Dataset</th>
+              <th colspan="4">Mip-NeRF 360 Dataset</th>
+              <th colspan="4">Deep Blending Dataset</th> -->
+              <!-- <th rowspan="2">Method</th> -->
+              <!-- <td rowspan="2"><strong>Method</strong></td> -->
+              <td colspan="1"><strong></strong></td>
+              <td colspan="4"><strong>Blender Dataset</strong></td>
+              <td colspan="4"><strong>Mip-NeRF 360 Dataset</strong></td>
+              <td colspan="4"><strong>Deep Blending Dataset</strong></td>
+          </tr>
+          <tr>
+              <th>Method</th>
+              <th>PSNR ↑</th>
+              <th>SSIM ↑</th>
+              <th>LPIPS ↓</th>
+              <th>FPS ↑</th>
+              <th>PSNR ↑</th>
+              <th>SSIM ↑</th>
+              <th>LPIPS ↓</th>
+              <th>FPS ↑</th>
+              <th>PSNR ↑</th>
+              <th>SSIM ↑</th>
+              <th>LPIPS ↓</th>
+              <th>FPS ↑</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>3DGS</td>
+              <td>21.78</td>
+              <td>0.868</td>
+              <td>0.104</td>
+              <td><strong>192</strong></td>
+              <td>20.28</td>
+              <td>0.581</td>
+              <td>0.420</td>
+              <td><strong>33</strong></td>
+              <td>26.64</td>
+              <td>0.854</td>
+              <td>0.312</td>
+              <td><strong>60</strong></td>
+          </tr>
+          <tr>
+              <td>StableSR</td>
+              <td>23.57</td>
+              <td>0.854</td>
+              <td>0.207</td>
+              <td>&lt;1</td>
+              <td>21.83</td>
+              <td>0.467</td>
+              <td>0.383</td>
+              <td>&lt;1</td>
+              <td>23.93</td>
+              <td>0.708</td>
+              <td>0.325</td>
+              <td>&lt;1</td>
+          </tr>
+          <tr>
+              <td>Bicubic</td>
+              <td>27.23</td>
+              <td>0.911</td>
+              <td>0.115</td>
+              <td>93</td>
+              <td>25.14</td>
+              <td>0.618</td>
+              <td>0.406</td>
+              <td>27</td>
+              <td>28.01</td>
+              <td>0.864</td>
+              <td>0.330</td>
+              <td>40</td>
+          </tr>
+          <tr>
+              <td>NeRF-SR</td>
+              <td>27.81</td>
+              <td>0.920</td>
+              <td>0.097</td>
+              <td>&lt;1</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+          </tr>
+          <tr>
+              <td><strong>GaussianSR(Ours)</strong></td>
+              <td><strong>28.37</strong></td>
+              <td><strong>0.924</strong></td>
+              <td><strong>0.087</strong></td>
+              <td><strong>192</strong></td>
+              <td><strong>25.60</strong></td>
+              <td><strong>0.663</strong></td>
+              <td><strong>0.368</strong></td>
+              <td><strong>33</strong></td>
+              <td><strong>28.28</strong></td>
+              <td><strong>0.873</strong></td>
+              <td><strong>0.307</strong></td>
+              <td><strong>60</strong></td>
+          </tr>
+      </tbody>
+  </table>
+
+  </div>
+</section>
+
+
+<section class="section">
+  
+<pre><code>
+  cite
+  <!-- @article{chung2023luciddreamer,
+  title={LucidDreamer: Domain-free Generation of 3D Gaussian Splatting Scenes},
+  author={Chung, Jaeyoung and Lee, Suyoung and Nam, Hyeongjin and Lee, Jaerin and Lee, Kyoung Mu},
+  journal={arXiv preprint arXiv:2311.13384},
+  year={2023}
+} -->
+</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+          We thank <a href=https://luciddreamer-cvlab.github.io/> LucidDreamer </a> for their sharing of this nice template.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer> -->
+
+</body>
+</html>

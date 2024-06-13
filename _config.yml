@@ -1,0 +1,10 @@
+plugins:
+  - jekyll-seo-tag
+
+
+title: GaussianSR
+tagline: 3D Gaussian Super-Resolution with 2D Diffusion Priors
+url: chchnii.github.io
+author:
+  name: Xiqian Yu
+
