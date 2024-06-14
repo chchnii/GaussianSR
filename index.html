@@ -365,6 +365,58 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const video1 = document.getElementById('specific-video-lr');
+    const video2 = document.getElementById('specific-video');
+
+    const syncVideos = (video) => {
+      video2.currentTime = video1.currentTime;
+    };
+
+    video1.addEventListener('play', () => {
+      video2.play();
+    });
+
+    video1.addEventListener('pause', () => {
+      video2.pause();
+    });
+
+    video1.addEventListener('seeking', syncVideos);
+    video1.addEventListener('timeupdate', syncVideos);
+    
+    video1.addEventListener('ratechange', () => {
+      video2.playbackRate = video1.playbackRate;
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const video3 = document.getElementById('specific-video-blender-lr');
+    const video4 = document.getElementById('specific-video-blender');
+
+    const syncVideos = (video) => {
+      video4.currentTime = video3.currentTime;
+    };
+
+    video3.addEventListener('play', () => {
+      video4.play();
+    });
+
+    video3.addEventListener('pause', () => {
+      video4.pause();
+    });
+
+    video3.addEventListener('seeking', syncVideos);
+    video4.addEventListener('timeupdate', syncVideos);
+    
+    video3.addEventListener('ratechange', () => {
+      video4.playbackRate = video3.playbackRate;
+    });
+  });
+
+</script>
+
 <script>
     bulmaCarousel.attach('#results-carousel1', {
         slidesToScroll: 1,
